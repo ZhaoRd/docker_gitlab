@@ -1,0 +1,19 @@
+# Use root/12346 as user/password credentials
+
+version: '3'
+
+services:
+    zrdgitlab:
+        image: gitlab/gitlab-ce
+        container_name: zrdgitlab
+        restart: always
+        ports:
+            - 1181:80
+        volumes:
+            - ./config:/etc/gitlab  # 配置文件
+            - ./log:/var/log/gitlab  # 日志
+            - gitlab-data:/var/opt/gitlab  # 数据
+            
+volumes:
+    gitlab-data:
+      external: true
